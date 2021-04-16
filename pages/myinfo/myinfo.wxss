@@ -1,0 +1,6 @@
+/* pages/myinfo/myinfo.wxss */
+
+.login_btn{
+    background: rgb(48, 173, 48);
+    color: #fff;
+}

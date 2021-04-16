@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="swiper-container">
+    <swiper indicator-dots="{{indicatorDots}}"
+        autoplay interval="2000" duration="500" indicator-dots>
+        <block wx:for="{{tempimg}}" wx:key="*this">
+          <swiper-item>
+            <cover-image src="{{item}}"></cover-image>
+          </swiper-item>
+        </block>
+    </swiper>
+  </view>
+  <view class="search">
+    <cover-image src="../../resources/icon/search.png" class="search-icon"></cover-image>
+    <input type="text" name="search" id="search" placeholder="请输入关键词" confirm-type="search"/>
+  </view>
+  <view class="allcourse">
+    <view class="coursetitle">精品课程</view>
+  </view>
+</view>

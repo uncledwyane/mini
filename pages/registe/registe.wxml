@@ -1,0 +1,49 @@
+<!--pages/registe/registe.wxml-->
+<view class="registe-container">
+    
+    <view class="type">
+        <view class="typechange {{ type == 'registe' ? 'active' : '' }} " data-name='registe' bindtap='changeType'>注册</view>
+        <view class="typechange {{ type == 'login' ? 'active' : '' }} " data-name='login' bindtap='changeType'>登录</view>
+    </view>
+    <view class="registetype" wx:if="{{type == 'registe'}}">
+        <view class="title">注册</view>
+        <view class="page-section">
+            <view class="weui-cell weui-cell_input">
+                <input class="weui-input" auto-focus placeholder="请输入用户名" model:value="{{nickName}}"/>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <input class="weui-input" auto-focus placeholder="请输入密码" model:value="{{password}}"/>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <input class="weui-input" auto-focus placeholder="请输入学号" model:value="{{stuId}}"/>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <radio-group bindchange="radioChange">
+                    <radio style="margin-right: 20px;" value="男" checked="{{gender == '男'}}">男</radio>
+                    <radio value="女" checked="{{gender == '女'}}">女</radio>
+                </radio-group>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <input class="weui-input" auto-focus placeholder="请输入头像链接" model:value="{{avatarUrl}}"/>
+            </view>
+        </view>
+        <view class="btn-group">
+            <button type="primary" size="mini" bindtap="registe">注册</button>
+            <button plain size="mini" bindtap="getInfo">获取微信信息</button>
+        </view>
+    </view>
+    <view class="logintype"  wx:if="{{type == 'login'}}">
+        <view class="title">登录</view>
+        <view class="page-section">
+            <view class="weui-cell weui-cell_input">
+                <input class="weui-input" auto-focus placeholder="请输入用户名" model:value="{{nickName}}"/>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <input class="weui-input" auto-focus placeholder="请输入密码" model:value="{{password}}"/>
+            </view>
+        </view>
+        <view>
+            <button type="primary" bindtap="login">登录</button>
+        </view>
+    </view>
+</view>

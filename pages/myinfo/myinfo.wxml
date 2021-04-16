@@ -1,0 +1,7 @@
+<!--pages/myinfo/myinfo.wxml-->
+<view class="myinfo-container" wx:if="{{userInfo}}">
+    <view class="header">
+        <cover-image src="{{userInfo.avatar_url}}" class="userheader"></cover-image>
+        <view class="username">{{userInfo.nickname}}</view>
+    </view>
+</view>
