@@ -1,0 +1,35 @@
+{
+  "name": "travalsite_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uncledwyane/travelsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uncledwyane/travelsite/issues"
+  },
+  "homepage": "https://github.com/uncledwyane/travelsite#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-cors": "0.0.3",
+    "express-generator": "^4.16.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "chalk": "^4.1.0",
+    "nodemon": "^2.0.7",
+    "supervisor": "^0.12.0"
+  }
+}
