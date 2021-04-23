@@ -1,7 +1,45 @@
 <!--pages/myinfo/myinfo.wxml-->
 <view class="myinfo-container" wx:if="{{userInfo}}">
     <view class="header">
-        <cover-image src="{{userInfo.avatar_url}}" class="userheader"></cover-image>
+        <cover-image src="{{userInfo.avatar_url}}" class="userheader"  wx:if="{{userInfo.avatar_url}}"></cover-image>
+        <cover-image src="../../resources/noheader.png" class="userheader" wx:if="{{!userInfo.avatar_url}}"></cover-image>
         <view class="username">{{userInfo.nickname}}</view>
     </view>
+    <view class="record">
+        <view class="play_record" bindtap="playRecord">
+            <cover-image src="../../resources/icon/record.png" alt="" class="recore-img"></cover-image>
+            <view class="text">播放记录</view>
+        </view>
+        <view class="my_upload" bindtap="myUpload">
+            <cover-image src="../../resources/icon/myupload.png" alt="" class="recore-img"></cover-image>
+            <view class="text">我的上传</view>
+        </view>
+    </view>
+    <view class="options">
+        <view class="mynickname option">
+            <text class="option_text">昵称</text>
+            <text class="userinfo">{{userInfo.nickname}}</text>
+        </view>
+        <view class="modify_pass option" bindtap="modifyPass">
+            <text class="option_text">修改密码</text>
+            <cover-image class="icon" src="../../resources/icon/more.png"></cover-image>
+        </view>
+        <view class="villeges option">
+            <text class="option_text">当前权限</text>
+            <text class="userinfo">{{userInfo.role}}</text>
+        </view>
+        <view class="user_manage option" wx:if="{{role == '管理员'}}" bindtap="userManage">
+            <text class="option_text">用户管理</text>
+            <cover-image class="icon" src="../../resources/icon/more.png"></cover-image>
+        </view>
+        <view class="video_manage option" wx:if="{{role == '管理员'}}" bindtap="videoManage">
+            <text class="option_text">视频管理</text>
+            <cover-image class="icon" src="../../resources/icon/more.png"></cover-image>
+        </view>
+        <view class="cate_manage option"  wx:if="{{role == '管理员'}}" bindtap="cateManage">
+            <text class="option_text">分类管理</text>
+            <cover-image class="icon" src="../../resources/icon/more.png"></cover-image>
+        </view>
+    </view>
+    <button size="mini" type="primary" bindtap="logout" class="logoutbtn">退出</button>
 </view>

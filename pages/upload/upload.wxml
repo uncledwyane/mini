@@ -4,15 +4,20 @@
         <view class="title">
             <view style="display: flex; margin-bottom: 20px;">
                 <text class="texttitle">标题</text>
-                <input type="text" placeholder="请输入标题" bindblur="checkInput" data-name="title"/>
+                <input type="text" placeholder="{{uploadType == 'video' ? '请输入视频标题' : '请选择上传视频填写'}}"  disabled="{{uploadType == 'photo'}}" data-name="title" model:value="{{video_title}}"/>
             </view>
             <view style="display: flex; margin-bottom: 20px;">
                 <text class="texttitle">视频介绍</text>
-                <input type="text" placeholder="请输入视频介绍" bindblur="checkInput" data-name="videointro"/>
+                <input type="text" placeholder="{{uploadType == 'video' ? '请输入视频介绍' : '请选择上传视频填写'}}" disabled="{{uploadType == 'photo'}}" data-name="videointro" model:value="{{video_desc}}"/>
             </view>
             <view style="display: flex; margin-bottom: 20px;">
                 <text class="texttitle">分类</text>
-                <input type="text" placeholder="请选择分类" bindblur="checkInput" data-name="category"/>
+                <!-- <input type="text" placeholder="{{uploadType == 'video' ? '请选择视频分类' : '请选择上传视频填写'}}"   disabled="{{uploadType == 'photo'}}" data-name="category" model:value="{{video_cate}}"/> -->
+                <picker bindchange="bindPickerChange" value="{{index}}" range="{{videoCate}}">
+                    <view class="picker">
+                    {{videoCate[index]}}
+                    </view>
+                </picker>
             </view>
         </view>
         <view class="selecttype">

@@ -98,7 +98,7 @@ Page({
                     wx.showToast({
                       title: '登录成功',
                     })
-                    wx.switchTab({
+                    wx.reLaunch({
                       url: '../index/index',
                     })
                 }else if(res.data.code == 2006){
@@ -117,6 +117,31 @@ Page({
                 wx.showToast({
                   title: '登录出错' + err,
                   icon: 'none'
+                })
+              }
+            })
+            wx.getStorage({
+              key: 'loginUser',
+              success(res){
+                wx.setStorage({
+                  data: res.data,
+                  key: 'userInfo',
+                })
+                wx.setStorage({
+                  data: true,
+                  key: 'isLogin',
+                })
+                wx.showToast({
+                  title: '登录成功',
+                })
+                wx.reLaunch({
+                  url: '../index/index',
+                })
+              },
+              fail(){
+                wx.showLoading({
+                  title: '登录出错',
+                  icon: "none"
                 })
               }
             })
@@ -196,6 +221,20 @@ Page({
                   console.log('requrest failed: ', res)
                 }
               })
+
+            wx.setStorage({
+              data: user,
+              key: 'loginUser',
+              success(res){
+                wx.showToast({
+                      title: '注册成功, 请登录',
+                      icon: 'success'
+                    })
+                    self.setData({
+                        type: "login"
+                    })
+              }
+            })
         }else{
             wx.showToast({
               title: '信息不全！',

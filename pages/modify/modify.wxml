@@ -1,0 +1,6 @@
+<!--pages/modify/modify.wxml-->
+<view class="modify">
+    <text class="passtext">当前密码</text>
+    <input type="text" class="passinput" model:placeholder="{{mypassword}}" model:value="{{mypassword}}"/>
+    <button bindtap="updatePass" style="background: #3cb73c; color: #fff;">更新密码</button>
+</view>

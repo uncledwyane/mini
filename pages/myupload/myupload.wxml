@@ -1,0 +1,13 @@
+
+<view class="containerr">
+    <text class="rtitle">上传记录</text>
+    <view class="record" wx:for="{{playRecords}}" wx:key="{{item.v_id}}" data-name="{{item.v_id}}">
+        <view class="title">视频名称：{{item.vname}}</view>
+        <view class="info">
+            <view class="duration">分类：{{item.cate}}</view>
+            <view class="username">日期：{{item.date}}</view>
+        </view>
+    </view>
+    <text hidden="{{playRecords}}" style="color: grey;">当前没有上传记录</text>
+    <button bindtap="deleteAll" hidden="{{!playRecords}}">删除全部</button>
+</view>

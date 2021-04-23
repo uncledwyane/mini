@@ -16,5 +16,16 @@
   </view>
   <view class="allcourse">
     <view class="coursetitle">精品课程</view>
+    <view class="courseType">
+      <view class="cate {{cateType == item.catename ? 'cate-active' : ''}}" wx:for="{{allcate}}" data-name="{{item.catename}}" bindtap="setCateType">{{item.catename}}</view>
+    </view>
+    <view class="courses">
+      <view class="each-curse" wx:for="{{videos}}">
+          <view class="video-title">{{item.vname}}</view>
+          <view class="video-box">
+            <video src="{{item.url}}" bindplay="saveToWatch" class="video" title="{{item.vname}}" data-name="{{item.v_id}}"></video>
+          </view>
+      </view>
+    </view>
   </view>
 </view>

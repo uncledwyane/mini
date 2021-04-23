@@ -1,0 +1,12 @@
+/* pages/modify/modify.wxss */
+.modify{
+    text-align: center;
+}
+.passinput{
+    border: 1px solid rgb(240,240,240);
+    width: 70%;
+    margin: 10px auto;
+    height: 30px;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
