@@ -36,9 +36,70 @@ app.all("*",function(req,res,next){
         next();
 })
 
+app.get('/getvideobycate', function(req, res){
+    console.log('/getvideobycate body: ', req.query.cate);
+    mysqls.getVideoByCate(req.query.cate).then(function(result){
+        console.log('/getvideobycate success return: ', result);
+
+        res.send(result);
+    })
+})
+
+app.get('/allcate', function(req, res){
+    mysqls.getAllCate().then(function(result){
+        res.send(result);
+    })
+})
+
+app.post('/watch', function(req, res){
+    mysqls.saveWatchHis(req.body).then(function(result){
+        res.send(result);
+    })
+})
+
+app.get('/watchbyusername', function(req, res){
+    mysqls.watchByUsername(req.query.username).then(function(result){
+        res.send(result);
+    })
+})
+
+app.get('/uploadbyusername', function(req, res){
+    mysqls.uploadByUsername(req.query.username).then(function(result){
+        res.send(result);
+    })
+})
+
+app.post('/updatepass', function(req, res){
+    mysqls.updatePass(req.body.username, req.body.password).then(function(result){
+        res.send(result)
+    })
+})
+
+app.post('/deleteallwatch', function(req, res){
+    mysqls.deleteAllWatch(req.body.username).then(function(result){
+        res.send(result)
+    })
+})
+
+app.post('/addcate', function(req, res){
+    mysqls.addCate(req.body.cate).then(function(result){
+        res.send(result);
+    })
+})
+
+app.post('/deletecate', function(req, res){
+    mysqls.deleteCate(req.body.cate).then(function(result){
+        res.send(result);
+    })
+})
+
 app.post('/savevideo', function(req, res){
-    console.log(req.body)
-    res.send(req.body)
+    console.log('/savevideo body: ', req.body);
+    mysqls.saveVideo(req.body).then(function(result){
+        console.log('/savevideo success return: ', result);
+
+        res.send(result);
+    })
 })
 
 app.post('/login', function(req, res){

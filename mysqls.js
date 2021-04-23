@@ -10,6 +10,71 @@ connection.connect();
 
 module.exports = {
 
+    getVideoByCate(cate){
+        var querySentence = `SELECT * FROM video WHERE cate='${cate}'`;
+        return this.normalGet(querySentence);
+    },
+
+    getAllCate(){
+        return this.normalGet(`SELECT catename FROM cate`);
+    },
+
+    addCate(cate){
+        return this.normalGet(`INSERT INTO cate(catename) VALUES('${cate}')`);
+    },
+
+    deleteCate(cate){
+        this.normalGet(`DELETE FROM cate WHERE catename='${cate}'`).then(function(){
+            return this.normalGet(`DELETE FROM video WHERE cate='${cate}'`)
+        })
+    },
+
+    saveVideo: function(videoObj){
+        var v_id = 'vid_' + parseInt((Math.random(10) * 1000000000));
+        var querySentence = `INSERT INTO video(v_id, vname, vdesc, url, cate, date) VALUES(
+            '${v_id}',
+            '${videoObj.name}',
+            '${videoObj.desc}',
+            '${videoObj.url}',
+            '${videoObj.cate}',
+            '${videoObj.date}'
+        )`;
+        this.saveVideoHis(v_id, videoObj.username);
+        return this.normalGet(querySentence);
+    },
+
+    deleteAllWatch(username){
+        return this.normalGet(`DELETE FROM watchhis WHERE username='${username}'`)
+    },
+
+    saveWatchHis: function(videoObj){
+        var querySentence = `INSERT INTO watchhis(v_id, username) VALUES(
+            '${videoObj.v_id}',
+            '${videoObj.username}'
+        )`;
+        return this.normalGet(querySentence);
+    },
+
+    watchByUsername(username){
+        return this.normalGet(`SELECT * from video WHERE v_id in(select v_id from watchhis WHERE username='${username}')`)
+    },
+
+    updatePass(username, password){
+        return this.normalGet(`UPDATE user SET password='${password}' WHERE username='${username}'`)
+    },
+    
+    uploadByUsername(username){
+        return this.normalGet(`SELECT * from video WHERE v_id in(select v_id from videohis WHERE username='${username}')`)
+    },
+
+    saveVideoHis: function(vid, username){
+        var querySentence = `INSERT INTO videohis(v_id,  username) VALUES(
+            '${vid}',
+            '${username}'
+        )`;
+        connection.query(querySentence);
+    },
+
     registeUser(user){
         var querySentence = `INSERT INTO user(nickname, avatar_url, gender, role, password, stu_id) VALUES(
             ${'\''+ user.nickName +'\''},
