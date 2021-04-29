@@ -5,13 +5,14 @@
         "pages/myinfo/myinfo",
         "pages/upload/upload",
         "pages/registe/registe",
-        "pages/ask/ask",
         "pages/playrecord/playrecord",
         "pages/myupload/myupload",
         "pages/usermanage/usermanage",
         "pages/videomanage/videomanage",
         "pages/catemanage/catemanage",
-        "pages/modify/modify"
+        "pages/modify/modify",
+        "pages/couse/couse",
+        "pages/question/question"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -32,12 +33,6 @@
                 "text": "上传",
                 "iconPath": "./resources/icon/upload.png",
                 "selectedIconPath": "./resources/icon/upload_active.png"
-            },
-            {
-                "pagePath": "pages/ask/ask",
-                "text": "答疑",
-                "iconPath": "./resources/icon/ask.png",
-                "selectedIconPath": "./resources/icon/ask.png"
             },
             {
                 "pagePath": "pages/myinfo/myinfo",

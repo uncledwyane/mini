@@ -10,7 +10,7 @@
             <cover-image src="../../resources/icon/record.png" alt="" class="recore-img"></cover-image>
             <view class="text">播放记录</view>
         </view>
-        <view class="my_upload" bindtap="myUpload">
+        <view class="my_upload" bindtap="myUpload" wx:if="{{role == '老师'}}">
             <cover-image src="../../resources/icon/myupload.png" alt="" class="recore-img"></cover-image>
             <view class="text">我的上传</view>
         </view>
@@ -28,15 +28,15 @@
             <text class="option_text">当前权限</text>
             <text class="userinfo">{{userInfo.role}}</text>
         </view>
-        <view class="user_manage option" wx:if="{{role == '管理员'}}" bindtap="userManage">
+        <view class="user_manage option" wx:if="{{role == '老师'}}" bindtap="userManage">
             <text class="option_text">用户管理</text>
             <cover-image class="icon" src="../../resources/icon/more.png"></cover-image>
         </view>
-        <view class="video_manage option" wx:if="{{role == '管理员'}}" bindtap="videoManage">
+        <view class="video_manage option" wx:if="{{role == '老师'}}" bindtap="videoManage">
             <text class="option_text">视频管理</text>
             <cover-image class="icon" src="../../resources/icon/more.png"></cover-image>
         </view>
-        <view class="cate_manage option"  wx:if="{{role == '管理员'}}" bindtap="cateManage">
+        <view class="cate_manage option"  wx:if="{{role == '老师'}}" bindtap="cateManage">
             <text class="option_text">分类管理</text>
             <cover-image class="icon" src="../../resources/icon/more.png"></cover-image>
         </view>

@@ -10,5 +10,5 @@
         </view>
     </view>
     <text hidden="{{playRecords}}" style="color: grey;">当前没有播放记录</text>
-    <button bindtap="deleteAll" hidden="{{!playRecords}}">删除全部</button>
+    <button bindtap="deleteAll" hidden="{{!playRecords}}" type="success">删除全部</button>
 </view>

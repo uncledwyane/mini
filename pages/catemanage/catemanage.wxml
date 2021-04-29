@@ -1,2 +1,8 @@
 <!--pages/catemanage/catemanage.wxml-->
-<text>pages/catemanage/catemanage.wxml</text>
+<view class="cate-container">
+    <view class="cate" wx:for="{{cates}}" bindtap="deleteCate" data-catename="{{item.catename}}">{{item.catename}}</view>
+</view>
+<view class="add">
+    <input type="text" model:value="{{cate}}" class="addinput" placeholder="输入分类"/>
+</view>
+<button bindtap="addCate" type="success">添加分类</button>

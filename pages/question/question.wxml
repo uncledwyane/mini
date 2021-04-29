@@ -1,0 +1,18 @@
+<!--pages/question/question.wxml-->
+<view class="question-detail">
+    <view class="question-title">
+        <view class="title">{{question.q_content}}</view>
+        <view class="by">{{question.q_username}}</view>
+    </view>
+    <view class="replays">
+        <view class="intro">所有回复：</view>
+        <view class="replay" wx:for="{{replays}}">
+            <view class="replay-content">{{item.r_content}}</view>
+            <view class="by">{{item.r_username}}</view>
+        </view>
+    </view>
+    <view class="send-question" wx:if="{{role == '老师'}}">
+        <input type="text" placeholder="回复学生..." class="question-input" model:value="{{replayContent}}"/>
+        <button class="subbtn" type="primary" bindtap="sendAnswer" disabled="{{!replayContent}}">回复</button>
+    </view>
+</view>

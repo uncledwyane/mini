@@ -5,62 +5,59 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        videos: null
     },
-
+    
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        var self = this;
+        self.getVideos()
     },
+    getVideos(){
+        var self = this;
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+        wx.request({
+          url: 'http://localhost:3000/allvideo',
+          method: "GET",
+          success(res){
+                self.setData({
+                    videos: res.data.data
+                })
+          }
+        })
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
+    deleteVideo(e){
+        var self =  this;
+        var vId = e.currentTarget.dataset.vid;
+        console.log('delete video , ', vId)
+        wx.showModal({
+            cancelColor: 'cancelColor',
+            cancelText: '取消',
+            confirmColor: 'confirmColor',
+            confirmText: '确认',
+            content: '删除提示',
+            showCancel: true,
+            title: '确认删除该视频吗',
+            success: (res) => {
+              if(res.confirm){
+                  wx.request({
+                    url: 'http://localhost:3000/deletevideo',
+                    data: {
+                        v_id: vId
+                    },
+                    method: "POST",
+                    success(res){
+                        wx.showToast({
+                          title: '删除成功',
+                        })
+  
+                        self.getVideos()
+                    }
+                  })
+              }
+            }
+          })
     }
 })

@@ -5,62 +5,76 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        cates: null,
+        cate: ''
     },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-
+    onLoad(){
+        var self = this;
+        self.getAllCate()
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+    deleteCate(e){
+        var self = this;
+        var catename = e.currentTarget.dataset.catename;
+        wx.showModal({
+            cancelColor: 'cancelColor',
+            cancelText: '取消',
+            confirmColor: 'confirmColor',
+            confirmText: '确认',
+            content: '删除提示',
+            showCancel: true,
+            title: '确认删除该分类吗',
+            success: (res) => {
+              if(res.confirm){
+                wx.request({
+                    url: 'http://localhost:3000/deletecate',
+                    method: "POST",
+                    data: {
+                        catename: catename
+                    },
+                    success(res){
+                      wx.showToast({
+                        title: '删除成功',
+                      })
+                      self.getAllCate()
+          
+                    }
+                  })
+              }
+            }
+          })
+        
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
+    getAllCate(){
+        var self = this;
+        wx.request({
+          url: 'http://localhost:3000/allcate',
+          method: "GET",
+          success(res){
+              self.setData({
+                  cates: res.data.data
+              })
+          }
+        })
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
+    addCate(){
+        var self = this;
+        wx.request({
+          url: 'http://localhost:3000/addcate',
+          data: {
+              catename: self.data.cate
+          },
+          method: "POST",
+          success(){
+            wx.showToast({
+              title: '添加成功',
+            })
+            self.getAllCate()
+            self.setData({
+                cate: ''
+            })
+          }
+        })
     }
 })

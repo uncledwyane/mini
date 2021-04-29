@@ -101,3 +101,15 @@
   height: 100%;
   border-radius: 10px;
 }
+.searchbtn{
+  width: 50px !important;
+  padding: 0 5px !important;
+  font-size: 13px;
+  height: 27px;
+  text-align: center;
+  line-height: 27px;
+  border-radius: 35px;
+  /* text-indent: 2px; */
+  position: absolute;
+  right: 5px;
+}

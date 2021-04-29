@@ -32,3 +32,12 @@
     background: #5fc8dd;
     color: #fff;
 }
+.no-value{
+    position: absolute;
+    margin: 0 auto;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 20px;
+    color: #666;
+}

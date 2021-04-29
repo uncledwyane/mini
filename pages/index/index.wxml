@@ -12,7 +12,8 @@
   </view>
   <view class="search">
     <cover-image src="../../resources/icon/search.png" class="search-icon"></cover-image>
-    <input type="text" name="search" id="search" placeholder="请输入关键词" confirm-type="search"/>
+    <input type="text" name="search" id="search" placeholder="请输入关键词" confirm-type="search" model:value="{{keyword}}"/>
+    <button type="primary" class="searchbtn" bindtap="searchvideo">搜索</button>
   </view>
   <view class="allcourse">
     <view class="coursetitle">精品课程</view>
@@ -20,10 +21,11 @@
       <view class="cate {{cateType == item.catename ? 'cate-active' : ''}}" wx:for="{{allcate}}" data-name="{{item.catename}}" bindtap="setCateType">{{item.catename}}</view>
     </view>
     <view class="courses">
-      <view class="each-curse" wx:for="{{videos}}">
+      <text wx:if="{{!videos}}">当前分类下为空</text>
+      <view class="each-curse" wx:for="{{videos}}" bindtap="showDetail" data-name="{{item.v_id}}" data-playurl="{{item.url}}" data-title="{{item.vname}}"> 
           <view class="video-title">{{item.vname}}</view>
           <view class="video-box">
-            <video src="{{item.url}}" bindplay="saveToWatch" class="video" title="{{item.vname}}" data-name="{{item.v_id}}"></video>
+            <video src="{{item.url}}" class="video" title="{{item.vname}}" data-name="{{item.v_id}}" controls="false" show-center-play-btn="false"></video>
           </view>
       </view>
     </view>

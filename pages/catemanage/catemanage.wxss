@@ -1,1 +1,28 @@
 /* pages/catemanage/catemanage.wxss */
+
+.cate-container, .add{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.cate{
+    width: 80px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    background: rgb(255, 187, 2);
+    color: #fff;
+    margin: 10px;
+}
+.addinput{
+    width: 90%;
+    height: 40px;
+    border: 1px solid rgb(221 232 255);
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    color: #666;
+}

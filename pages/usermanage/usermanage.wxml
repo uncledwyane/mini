@@ -1,2 +1,13 @@
 <!--pages/usermanage/usermanage.wxml-->
-<text>pages/usermanage/usermanage.wxml</text>
+<view class="user-container">
+    <view class="user" wx:for="{{users}}" bindtap="deleteUser" data-username="{{item.nickname}}">
+        <view class="left-header">
+            <cover-image src="{{item.avatar_url}}" class="header"></cover-image>
+        </view>
+        <view class="info">
+            <view class="name">{{item.nickname}}</view>
+            <view class="gender">{{item.gender}}</view>
+            <view class="role">{{item.role}}</view>
+        </view>
+    </view>
+</view>

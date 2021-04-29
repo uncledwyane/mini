@@ -30,6 +30,10 @@ Page({
             })
           }
         })
+
+        wx.setNavigationBarTitle({
+          title: '我的信息',
+        })
     },
 
     /**

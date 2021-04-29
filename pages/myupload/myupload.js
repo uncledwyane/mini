@@ -13,6 +13,9 @@ Page({
      */
     onLoad: function (options) {
         this.getRecords()
+        wx.setNavigationBarTitle({
+          title: '我的上传',
+        })
     },
 
     /**

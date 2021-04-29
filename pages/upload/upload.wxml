@@ -1,6 +1,6 @@
 <!--pages/upload/upload.wxml-->
 <view>
-    <view class="videoinfo">
+    <view class="videoinfo" wx:if="{{role == '老师'}}">
         <view class="title">
             <view style="display: flex; margin-bottom: 20px;">
                 <text class="texttitle">标题</text>
@@ -29,4 +29,5 @@
             <button bindtap="uploadVideo" style="background: #3a8afb; color: #fff;" wx:else>提交视频</button>
         </view>
     </view>
+    <view class="no-value" wx:if="{{role == '学生'}}">学生不能上传</view>
 </view>

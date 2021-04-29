@@ -15,14 +15,22 @@ Page({
           '数学',
           '其他'
         ],
-        index: 0
+        index: 0,
+        role: ''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      wx.setNavigationBarTitle({
+        title: '上传',
+      })
 
+      var self = this;
+      self.setData({
+        role: wx.getStorageSync('userInfo').role
+      })
     },
 
     /**

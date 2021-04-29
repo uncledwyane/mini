@@ -1,0 +1,18 @@
+<!--pages/couse/couse.wxml-->
+<view class="course-container">
+    <view class="course-title-video">
+        <view class="course-title">{{title}}</view>
+        <video src="{{playUrl}}" class="video-detail" autoplay></video>
+    </view>
+    <view class="send-question" wx:if="{{role == '学生'}}">
+        <input type="text" placeholder="向老师提问" class="question-input" model:value="{{questionContent}}"/>
+        <button class="subbtn" type="primary" bindtap="sendQuestion" disabled="{{!questionContent}}">提问</button>
+    </view>
+    <view class="questions">
+        <view style="color: #999;" wx:if="{{!questionList}}">还没有问题呢...</view>
+        <view class="question" wx:for="{{questionList}}" bindtap="viewquestion" data-question="{{item}}">
+            <view class="quesion-title">{{item.q_content}}</view>
+            <view class="question-info">{{item.q_username}}</view>
+        </view>
+    </view>
+</view>

@@ -1,2 +1,10 @@
 <!--pages/videomanage/videomanage.wxml-->
-<text>pages/videomanage/videomanage.wxml</text>
+<view class="user-container">
+    <view class="user" wx:for="{{videos}}" bindtap="deleteVideo" data-vid="{{item.v_id}}">
+        <view class="info">
+            <view class="name">{{item.vname}}</view>
+            <view class="role">{{item.cate}}</view>
+            <view class="role">{{item.date}}</view>
+        </view>
+    </view>
+</view>
