@@ -36,6 +36,37 @@ app.all("*",function(req,res,next){
         next();
 })
 
+
+app.post('/savequestion', function(req, res){
+    console.log('/savequestion body: ', req.body);
+
+    mysqls.saveQuestion(req.body).then(function(result){
+        res.send(result);
+    })
+})
+
+app.post('/savereplay', function(req, res){
+    console.log('/savequestion body: ', req.body);
+    mysqls.saveReplay(req.body).then(function(result){
+        res.send(result);
+    })
+})
+
+app.get('/allreplay', function(req, res){
+    mysqls.getReplayByQid(req.query.q_id).then(function(result){
+        res.send(result);
+    })
+})
+
+
+app.post('/getquestions', function(req, res){
+    console.log('/getquestions body: ', req.body);
+
+    mysqls.getQuestionByVid(req.body.v_id).then(function(result){
+        res.send(result);
+    })
+})
+
 app.get('/getvideobycate', function(req, res){
     console.log('/getvideobycate body: ', req.query.cate);
     mysqls.getVideoByCate(req.query.cate).then(function(result){
@@ -51,9 +82,43 @@ app.get('/allcate', function(req, res){
     })
 })
 
+app.post('/searchvideo', function(req, res){
+    mysqls.searchVideo(req.body.keyword).then(function(result){
+        res.send(result)
+    })
+})
+
+app.get('/allvideo', function(req, res){
+    mysqls.getAllVideo().then(function(result){
+        res.send(result);
+    })
+})
+
 app.post('/watch', function(req, res){
     mysqls.saveWatchHis(req.body).then(function(result){
         res.send(result);
+    })
+})
+
+app.post('/deleteuser', function(req, res){
+    mysqls.deleteUser(req.body.nickname).then(function(result){
+        res.send(result)
+    })
+})
+
+app.post('/deletevideo', function(req, res){
+    mysqls.deleteVideo(req.body.v_id).then(function(result){
+        res.send(result)
+    })
+})
+app.post('/deletecate', function(req, res){
+    mysqls.deleteCate(req.body.catename).then(function(result){
+        res.send(result)
+    })
+})
+app.post('/addcate', function(req, res){
+    mysqls.addCate(req.body.catename).then(function(result){
+        res.send(result)
     })
 })
 
@@ -68,6 +133,18 @@ app.get('/uploadbyusername', function(req, res){
         res.send(result);
     })
 })
+app.get('/alluser', function(req, res){
+    mysqls.getAllUser().then(function(result){
+        res.send(result);
+    })
+})
+app.get('/allvideo', function(req, res){
+    mysqls.getAllUser().then(function(result){
+        res.send(result);
+    })
+})
+
+
 
 app.post('/updatepass', function(req, res){
     mysqls.updatePass(req.body.username, req.body.password).then(function(result){
@@ -144,6 +221,7 @@ app.post('/registe', function(req, res){
         }
     })
 })
+
 
 app.listen(3000, function (){
     console.log('app listen on port 3000...')

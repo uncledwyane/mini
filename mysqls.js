@@ -15,6 +15,34 @@ module.exports = {
         return this.normalGet(querySentence);
     },
 
+    getAllUser(){
+        return this.normalGet(`SELECT * FROM user`);
+    },
+
+    deleteUser(nickname){
+        var querySentence = `DELETE FROM user WHERE nickname='${nickname}'`;
+        return this.normalGet(querySentence);
+    },
+
+    deleteVideo(v_id){
+        var querySentence = `DELETE FROM video WHERE v_id='${v_id}'`;
+        return this.normalGet(querySentence);
+    },
+
+    deleteCate(catename){
+        var querySentence = `DELETE FROM cate WHERE catename='${catename}'`;
+        return this.normalGet(querySentence);
+    },
+
+    addCate(catename){
+        var querySentence = `INSERT INTO cate(catename) VALUES('${catename}')`;
+        return this.normalGet(querySentence);
+    },
+
+    getAllVideo(){
+        return this.normalGet(`SELECT * from video`);
+    },
+
     getAllCate(){
         return this.normalGet(`SELECT catename FROM cate`);
     },
@@ -23,11 +51,6 @@ module.exports = {
         return this.normalGet(`INSERT INTO cate(catename) VALUES('${cate}')`);
     },
 
-    deleteCate(cate){
-        this.normalGet(`DELETE FROM cate WHERE catename='${cate}'`).then(function(){
-            return this.normalGet(`DELETE FROM video WHERE cate='${cate}'`)
-        })
-    },
 
     saveVideo: function(videoObj){
         var v_id = 'vid_' + parseInt((Math.random(10) * 1000000000));
@@ -47,12 +70,61 @@ module.exports = {
         return this.normalGet(`DELETE FROM watchhis WHERE username='${username}'`)
     },
 
+    checkWatch(videoObj){
+        return this.normalGet(`SELECT * FROM watchhis WHERE v_id='${videoObj.v_id}' and username='${videoObj.username}'`)
+    },
+
+    searchVideo(keyword){
+        return this.normalGet(`SELECT * FROM video WHERE vname LIKE '%${keyword}%'`);
+    },
+
     saveWatchHis: function(videoObj){
+        var self = this;
         var querySentence = `INSERT INTO watchhis(v_id, username) VALUES(
             '${videoObj.v_id}',
             '${videoObj.username}'
         )`;
         return this.normalGet(querySentence);
+
+        // self.checkWatch(videoObj).then(function(res){
+        //     if(res.data.length > 0){
+        //         return this.normalGet(`SELECT * FROM watchhis WHERE v_id='${videoObj.v_id} and username='${videoObj.username}'`);   
+        //     }else{
+        //         return this.normalGet(querySentence);
+        //     }
+        // })
+    },
+
+    saveQuestion(question){
+        var q_id = 'q_id' + parseInt((Math.random(10) * 1000000000));
+        return this.normalGet(`INSERT INTO question(v_id, q_id, q_content, q_username) VALUES(
+            '${question.v_id}',
+            '${q_id}',
+            '${question.q_content}',
+            '${question.q_username}'
+        )`);
+    },
+
+    saveReplay(replay){
+        var r_id = 'r_id' + parseInt((Math.random(10) * 1000000000));
+        return this.normalGet(`INSERT INTO replay(r_id, r_content, q_id, r_username) VALUES(
+            '${r_id}',
+            '${replay.content}',
+            '${replay.q_id}',
+            '${replay.username}'
+        )`);
+    },
+
+    getReplayByQid(qId){
+        return this.normalGet(`SELECT * FROM replay WHERE q_id='${qId}'`)
+    },
+
+    getQuestionByVid(vId){
+        return this.normalGet(`SELECT * FROM question WHERE v_id='${vId}'`);
+    },
+
+    getReplayByVid(vId){
+        return this.normalGet(`SELECT * FROM question WHERE v_id='${vId}'`);
     },
 
     watchByUsername(username){
@@ -60,7 +132,8 @@ module.exports = {
     },
 
     updatePass(username, password){
-        return this.normalGet(`UPDATE user SET password='${password}' WHERE username='${username}'`)
+        var querySentence = `update user set password='${password}' where nickname='${username}'`;
+        return this.normalGet(querySentence);
     },
     
     uploadByUsername(username){
@@ -74,7 +147,6 @@ module.exports = {
         )`;
         connection.query(querySentence);
     },
-
     registeUser(user){
         var querySentence = `INSERT INTO user(nickname, avatar_url, gender, role, password, stu_id) VALUES(
             ${'\''+ user.nickName +'\''},
